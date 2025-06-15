@@ -1,0 +1,364 @@
+/* リセットCSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #74b9ff, #0984e3);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #333;
+}
+
+.game-container {
+    width: 90%;
+    max-width: 600px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    text-align: center;
+}
+
+/* ヘッダー */
+.game-header {
+    margin-bottom: 20px;
+}
+
+.game-title {
+    font-size: 1.8rem;
+    color: #2d3436;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.status-bar {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.score {
+    color: #00b894;
+}
+
+.life {
+    color: #e74c3c;
+}
+
+.combo {
+    color: #fdcb6e;
+}
+
+/* 状態メッセージ */
+.status-message {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin: 15px 0;
+    padding: 10px;
+    border-radius: 10px;
+    background: #ddd;
+    transition: all 0.3s ease;
+}
+
+.status-message.ready {
+    background: #a29bfe;
+    color: white;
+}
+
+.status-message.playing {
+    background: #00b894;
+    color: white;
+}
+
+.status-message.game-over {
+    background: #e74c3c;
+    color: white;
+}
+
+/* メインゲームエリア */
+.game-main {
+    margin: 30px 0;
+}
+
+.character-area {
+    width: 300px;
+    height: 400px;
+    margin: 0 auto;
+    position: relative;
+    background: #f8f9fa;
+    border: 3px solid #ddd;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.character-area:hover {
+    background: #e9ecef;
+}
+
+.character-area.clickable {
+    background: #d1ecf1;
+    border-color: #bee5eb;
+}
+
+/* キャラクター */
+.character {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 200px;
+}
+
+/* 頭 */
+.head {
+    width: 40px;
+    height: 40px;
+    background: #fdbcb4;
+    border-radius: 50%;
+    margin: 0 auto;
+    border: 2px solid #333;
+}
+
+/* 体 */
+.body {
+    width: 30px;
+    height: 60px;
+    background: #74b9ff;
+    margin: 5px auto;
+    border: 2px solid #333;
+    border-radius: 5px;
+}
+
+/* 腕 */
+.arms {
+    display: flex;
+    justify-content: space-between;
+    width: 60px;
+    margin: -20px auto 0;
+    position: relative;
+    z-index: 1;
+}
+
+.arm-left,
+.arm-right {
+    width: 15px;
+    height: 40px;
+    background: #fdbcb4;
+    border: 2px solid #333;
+    border-radius: 10px;
+}
+
+/* 脚 */
+.legs {
+    display: flex;
+    justify-content: space-between;
+    width: 40px;
+    margin: 10px auto 0;
+}
+
+.leg-left,
+.leg-right {
+    width: 15px;
+    height: 60px;
+    background: #fdbcb4;
+    border: 2px solid #333;
+    border-radius: 5px;
+}
+
+/* ズボン */
+.zubon {
+    position: absolute;
+    width: 50px;
+    height: 40px;
+    background: #6c5ce7;
+    border: 2px solid #333;
+    border-radius: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 105px; /* 通常位置 */
+    transition: top 0.3s ease;
+    z-index: 2;
+}
+
+/* ズボンの状態 */
+.zubon.warning {
+    top: 115px; /* 少し下がった状態 */
+    background: #fd79a8;
+}
+
+.zubon.danger {
+    top: 130px; /* 危険な状態 */
+    background: #e84393;
+    animation: shake 0.1s infinite;
+}
+
+.zubon.falling {
+    top: 160px; /* 完全に落ちた状態 */
+    background: #e74c3c;
+    transform: translateX(-50%) rotate(15deg);
+}
+
+.zubon.saved {
+    animation: bounce 0.5s ease;
+}
+
+/* アニメーション */
+@keyframes shake {
+    0%, 100% { transform: translateX(-50%) rotate(-1deg); }
+    50% { transform: translateX(-50%) rotate(1deg); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateX(-50%) scale(1); }
+    50% { transform: translateX(-50%) scale(1.1); }
+}
+
+@keyframes sparkle {
+    0% { opacity: 1; transform: scale(0); }
+    50% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(1.5); }
+}
+
+/* コントロール */
+.controls {
+    margin: 20px 0;
+}
+
+.btn {
+    font-size: 1.2rem;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    margin: 0 10px;
+}
+
+.btn-start {
+    background: #00b894;
+    color: white;
+}
+
+.btn-start:hover {
+    background: #00a085;
+    transform: translateY(-2px);
+}
+
+.btn-retry {
+    background: #e74c3c;
+    color: white;
+}
+
+.btn-retry:hover {
+    background: #c0392b;
+    transform: translateY(-2px);
+}
+
+.btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* エフェクト */
+.effects {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.effect-sparkle {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #fdcb6e;
+    border-radius: 50%;
+    animation: sparkle 1s ease-out forwards;
+}
+
+.effect-perfect {
+    position: absolute;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #00b894;
+    animation: float-up 1s ease-out forwards;
+}
+
+.effect-good {
+    position: absolute;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #74b9ff;
+    animation: float-up 1s ease-out forwards;
+}
+
+.effect-early {
+    position: absolute;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fdcb6e;
+    animation: float-up 1s ease-out forwards;
+}
+
+@keyframes float-up {
+    0% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-50px); }
+}
+
+/* モバイル対応 */
+@media (max-width: 480px) {
+    .game-container {
+        width: 95%;
+        padding: 15px;
+    }
+    
+    .game-title {
+        font-size: 1.5rem;
+    }
+    
+    .character-area {
+        width: 250px;
+        height: 350px;
+    }
+    
+    .character {
+        width: 70px;
+        height: 180px;
+    }
+    
+    .status-bar {
+        font-size: 1rem;
+    }
+    
+    .btn {
+        font-size: 1rem;
+        padding: 10px 20px;
+        margin: 5px;
+    }
+}
+
+/* ゲーム状態によるレイアウト調整 */
+.game-container.game-over .character-area {
+    filter: grayscale(50%);
+}
+
+.game-container.playing .character-area {
+    border-color: #00b894;
+    box-shadow: 0 0 15px rgba(0, 184, 148, 0.3);
+}

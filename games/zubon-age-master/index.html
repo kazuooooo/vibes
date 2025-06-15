@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ズボン上げマスター – 落ちるズボンを防ぐ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <!-- ヘッダー -->
+        <header class="game-header">
+            <h1 data-testid="title" class="game-title">ズボン上げマスター</h1>
+            <div class="status-bar">
+                <div data-testid="score-display" class="score">スコア: <span id="score">0</span></div>
+                <div data-testid="life-display" class="life">ライフ: <span id="life">3</span></div>
+                <div data-testid="combo-display" class="combo">コンボ: <span id="combo">0</span></div>
+            </div>
+        </header>
+
+        <!-- 状態メッセージ -->
+        <div data-testid="status-message" class="status-message" id="status">準備中</div>
+
+        <!-- メインゲームエリア -->
+        <main class="game-main">
+            <div data-testid="character-area" class="character-area" id="character-area">
+                <!-- キャラクター -->
+                <div class="character">
+                    <div class="head"></div>
+                    <div class="body"></div>
+                    <div class="arms">
+                        <div class="arm-left"></div>
+                        <div class="arm-right"></div>
+                    </div>
+                    <div class="legs">
+                        <div class="leg-left"></div>
+                        <div class="leg-right"></div>
+                    </div>
+                    <!-- ズボン -->
+                    <div data-testid="zubon" class="zubon" id="zubon"></div>
+                </div>
+            </div>
+        </main>
+
+        <!-- コントロールエリア -->
+        <div class="controls">
+            <button data-testid="start-button" class="btn btn-start" id="start-button">スタート</button>
+            <button data-testid="retry-button" class="btn btn-retry" id="retry-button" style="display: none;">リトライ</button>
+        </div>
+
+        <!-- エフェクトエリア -->
+        <div class="effects" id="effects"></div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
