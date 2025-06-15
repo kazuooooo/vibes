@@ -1,0 +1,349 @@
+/* 基本スタイル */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #87CEEB 0%, #98E4E8 50%, #B0E0E6 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.game-container {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    max-width: 900px;
+    width: 100%;
+    position: relative;
+}
+
+/* ヘッダー */
+.game-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.game-header h1 {
+    color: #2c3e50;
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+
+.game-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #34495e;
+}
+
+/* ゲームフィールド */
+.game-field {
+    width: 100%;
+    height: 500px;
+    background: linear-gradient(to bottom, #E6F3FF 0%, #CCE7FF 100%);
+    border: 3px solid #3498db;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+/* プレイヤー */
+.player {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 3rem;
+    transition: left 0.1s ease;
+    z-index: 10;
+    user-select: none;
+}
+
+/* ヅラ */
+.wig {
+    position: absolute;
+    font-size: 2.5rem;
+    transition: transform 0.1s ease;
+    user-select: none;
+    z-index: 5;
+}
+
+.wig.normal {
+    filter: sepia(0.8) saturate(1.5) hue-rotate(20deg);
+}
+
+.wig.special {
+    color: gold;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+    animation: sparkle 1s infinite alternate;
+}
+
+@keyframes sparkle {
+    0% { transform: scale(1) rotate(-2deg); }
+    100% { transform: scale(1.1) rotate(2deg); }
+}
+
+/* キャッチエフェクト */
+.catch-effect {
+    position: absolute;
+    color: #27ae60;
+    font-weight: bold;
+    font-size: 1.5rem;
+    animation: catchAnimation 1s ease-out forwards;
+    pointer-events: none;
+    z-index: 15;
+}
+
+@keyframes catchAnimation {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-50px) scale(1.5);
+    }
+}
+
+/* ボタン */
+.controls {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.btn {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 0 10px;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, #3498db, #2980b9);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(45deg, #2980b9, #1f5f8b);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-secondary {
+    background: linear-gradient(45deg, #e74c3c, #c0392b);
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(45deg, #c0392b, #a0302a);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* 状態メッセージ */
+.status-message {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 15px;
+    min-height: 30px;
+}
+
+/* コンボ表示 */
+.combo-display {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    font-weight: bold;
+    color: #f39c12;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    animation: comboAnimation 2s ease-out forwards;
+    pointer-events: none;
+    z-index: 20;
+}
+
+@keyframes comboAnimation {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+    20% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.2);
+    }
+    80% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+}
+
+/* 操作説明 */
+.instructions {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.instructions p {
+    margin: 5px 0;
+}
+
+/* タッチ操作用 */
+.touch-controls {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 30;
+    display: none;
+}
+
+.touch-left,
+.touch-right {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    pointer-events: auto;
+    background: transparent;
+}
+
+.touch-left {
+    left: 0;
+}
+
+.touch-right {
+    right: 0;
+}
+
+/* ライフ減少エフェクト */
+.life-loss-effect {
+    animation: lifeLossFlash 0.5s ease-out;
+}
+
+@keyframes lifeLossFlash {
+    0%, 100% { background-color: transparent; }
+    50% { background-color: rgba(231, 76, 60, 0.3); }
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+    .game-container {
+        padding: 15px;
+        margin: 10px;
+    }
+
+    .game-header h1 {
+        font-size: 2rem;
+    }
+
+    .game-info {
+        font-size: 1rem;
+    }
+
+    .game-field {
+        height: 400px;
+    }
+
+    .player {
+        font-size: 2.5rem;
+    }
+
+    .wig {
+        font-size: 2rem;
+    }
+
+    .btn {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+
+    .status-message {
+        font-size: 1.2rem;
+    }
+
+    .instructions {
+        font-size: 0.8rem;
+        padding: 10px;
+    }
+
+    .touch-controls {
+        display: block;
+    }
+}
+
+@media (max-width: 480px) {
+    .game-header h1 {
+        font-size: 1.8rem;
+    }
+
+    .game-field {
+        height: 350px;
+    }
+
+    .player {
+        font-size: 2rem;
+    }
+
+    .wig {
+        font-size: 1.8rem;
+    }
+
+    .game-info {
+        flex-direction: column;
+        gap: 5px;
+    }
+}
+
+/* アクセシビリティ */
+@media (prefers-reduced-motion: reduce) {
+    .player,
+    .wig,
+    .btn {
+        transition: none;
+    }
+    
+    .wig.special,
+    .catch-effect,
+    .combo-display {
+        animation: none;
+    }
+}
