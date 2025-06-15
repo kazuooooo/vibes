@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>モグラたたきリミックス</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <!-- ヘッダー -->
+        <header class="game-header">
+            <h1 data-testid="title" class="game-title">モグラたたきリミックス</h1>
+            <div class="game-info">
+                <div class="score-display">
+                    <span>スコア: </span>
+                    <span data-testid="score" id="score">0点</span>
+                </div>
+                <div class="timer-display">
+                    <span>残り時間: </span>
+                    <span data-testid="timer" id="timer">30</span>
+                    <span>秒</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- メインゲームエリア -->
+        <main class="game-main">
+            <div class="game-grid" id="gameGrid">
+                <!-- 3x3グリッドの穴を生成 -->
+                <div class="hole" data-testid="hole-0" id="hole-0">
+                    <div class="character enemy" data-testid="character-0" data-type="enemy" style="display: none;"></div>
+                </div>
+                <div class="hole" data-testid="hole-1" id="hole-1">
+                    <div class="character ally" data-testid="character-1" data-type="ally" style="display: none;"></div>
+                </div>
+                <div class="hole" data-testid="hole-2" id="hole-2">
+                    <div class="character enemy" data-testid="character-2" data-type="enemy" style="display: none;"></div>
+                </div>
+                <div class="hole" data-testid="hole-3" id="hole-3">
+                    <div class="character ally" data-testid="character-3" data-type="ally" style="display: none;"></div>
+                </div>
+                <div class="hole" data-testid="hole-4" id="hole-4">
+                    <div class="character enemy" data-testid="character-4" data-type="enemy" style="display: none;"></div>
+                </div>
+                <div class="hole" data-testid="hole-5" id="hole-5">
+                    <div class="character ally" data-testid="character-5" data-type="ally" style="display: none;"></div>
+                </div>
+                <div class="hole" data-testid="hole-6" id="hole-6">
+                    <div class="character enemy" data-testid="character-6" data-type="enemy" style="display: none;"></div>
+                </div>
+                <div class="hole" data-testid="hole-7" id="hole-7">
+                    <div class="character ally" data-testid="character-7" data-type="ally" style="display: none;"></div>
+                </div>
+                <div class="hole" data-testid="hole-8" id="hole-8">
+                    <div class="character enemy" data-testid="character-8" data-type="enemy" style="display: none;"></div>
+                </div>
+            </div>
+        </main>
+
+        <!-- コントロールエリア -->
+        <div class="game-controls">
+            <button data-testid="start-button" id="startButton" class="control-button start-button">
+                スタート
+            </button>
+        </div>
+
+        <!-- ゲーム結果表示 -->
+        <div data-testid="game-over-screen" id="gameOverScreen" class="game-over-screen" style="display: none;">
+            <div class="game-over-content">
+                <h2>ゲーム終了！</h2>
+                <div class="final-score">
+                    <span>最終スコア: </span>
+                    <span data-testid="final-score" id="finalScore">0点</span>
+                </div>
+                <div class="game-stats" id="gameStats">
+                    <div>敵を叩いた回数: <span id="enemyHits">0</span></div>
+                    <div>味方を叩いた回数: <span id="allyHits">0</span></div>
+                    <div>味方を見逃した回数: <span id="allyMisses">0</span></div>
+                </div>
+                <button data-testid="retry-button" id="retryButton" class="control-button retry-button">
+                    もう一度プレイ
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
