@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ヅラ飛ばし - 強風で飛ばされたヅラをキャッチ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <!-- ヘッダー -->
+        <header class="game-header">
+            <h1 data-testid="title">ヅラ飛ばし</h1>
+            <div class="game-info">
+                <div class="score-container">
+                    <span>スコア: </span>
+                    <span data-testid="score-display" id="score">0</span>
+                </div>
+                <div class="life-container">
+                    <span>ライフ: </span>
+                    <span data-testid="life-display" id="life">3</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- ゲームフィールド -->
+        <div data-testid="game-field" class="game-field" id="gameField">
+            <!-- プレイヤー -->
+            <div data-testid="player" class="player" id="player">🙋‍♂️</div>
+            
+            <!-- ヅラが動的に追加される -->
+        </div>
+
+        <!-- コントロール -->
+        <div class="controls">
+            <button data-testid="start-button" id="startButton" class="btn btn-primary">スタート</button>
+            <button data-testid="retry-button" id="retryButton" class="btn btn-secondary" style="display: none;">リトライ</button>
+        </div>
+
+        <!-- 状態メッセージ -->
+        <div data-testid="status-message" class="status-message" id="statusMessage">スタートボタンを押してゲーム開始！</div>
+
+        <!-- コンボ表示 -->
+        <div data-testid="combo-display" class="combo-display" id="comboDisplay" style="display: none;"></div>
+
+        <!-- 操作説明 -->
+        <div class="instructions">
+            <p><strong>操作方法:</strong></p>
+            <p>PC: A/D キーまたは矢印キーで左右移動</p>
+            <p>モバイル: 画面左右をタッチして移動</p>
+        </div>
+    </div>
+
+    <!-- タッチ操作用の不可視ボタン -->
+    <div class="touch-controls">
+        <div class="touch-left" id="touchLeft"></div>
+        <div class="touch-right" id="touchRight"></div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
