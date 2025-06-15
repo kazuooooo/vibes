@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>スローライフ剣士</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 data-testid="game-title">スローライフ剣士</h1>
+            <div class="game-stats">
+                <div class="stat">
+                    <span>スコア: </span>
+                    <span data-testid="score" id="score">0</span>
+                </div>
+                <div class="stat">
+                    <span>体力: </span>
+                    <span data-testid="health" id="health">3</span>
+                </div>
+                <div class="stat">
+                    <span>時間: </span>
+                    <span data-testid="timer" id="timer">60</span>
+                </div>
+            </div>
+        </header>
+        
+        <main class="game-area">
+            <div data-testid="game-field" class="game-field" id="game-field">
+                <!-- 剣士キャラクター -->
+                <div data-testid="swordsman" class="swordsman" id="swordsman"></div>
+                
+                <!-- 攻撃範囲（初期は非表示） -->
+                <div data-testid="attack-range" class="attack-range" id="attack-range"></div>
+                
+                <!-- 敵キャラクターは動的に生成される -->
+            </div>
+            
+            <div class="game-controls">
+                <button data-testid="slash-button" id="slash-button" class="slash-btn">斬る</button>
+            </div>
+            
+            <div class="result-area" id="result-area" style="display: none;">
+                <div class="final-score">
+                    <h2>ゲーム終了！</h2>
+                    <p>最終スコア: <span id="final-score">0</span>点</p>
+                    <p>倒した敵: <span id="enemies-defeated">0</span>体</p>
+                </div>
+                <button data-testid="restart-button" id="restart-button" class="restart-btn">ゲーム再開</button>
+            </div>
+        </main>
+    </div>
+    
+    <script src="game.js"></script>
+</body>
+</html>
