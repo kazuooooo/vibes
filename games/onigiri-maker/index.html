@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>おにぎりメーカー</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 data-testid="title" class="title">おにぎりメーカー</h1>
+            <div class="stats">
+                <span class="creation-count-label">作成回数: </span>
+                <span data-testid="creation-count" class="creation-count">0</span>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="selection-area">
+                <!-- 具材選択 -->
+                <div class="category-section">
+                    <h2 class="category-title">具材を選ぶ</h2>
+                    <div class="button-group">
+                        <button data-testid="ingredient-ume" class="selection-btn ingredient-btn" data-ingredient="ume">
+                            <span class="icon">🔴</span>
+                            <span class="label">梅干し</span>
+                        </button>
+                        <button data-testid="ingredient-salmon" class="selection-btn ingredient-btn" data-ingredient="salmon">
+                            <span class="icon">🐟</span>
+                            <span class="label">鮭</span>
+                        </button>
+                        <button data-testid="ingredient-konbu" class="selection-btn ingredient-btn" data-ingredient="konbu">
+                            <span class="icon">⚫</span>
+                            <span class="label">昆布</span>
+                        </button>
+                        <button data-testid="ingredient-tuna-mayo" class="selection-btn ingredient-btn" data-ingredient="tuna-mayo">
+                            <span class="icon">🟡</span>
+                            <span class="label">ツナマヨ</span>
+                        </button>
+                        <button data-testid="ingredient-mentaiko" class="selection-btn ingredient-btn" data-ingredient="mentaiko">
+                            <span class="icon">🔶</span>
+                            <span class="label">明太子</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 形選択 -->
+                <div class="category-section">
+                    <h2 class="category-title">形を選ぶ</h2>
+                    <div class="button-group">
+                        <button data-testid="shape-triangle" class="selection-btn shape-btn" data-shape="triangle">
+                            <span class="icon">🔺</span>
+                            <span class="label">三角</span>
+                        </button>
+                        <button data-testid="shape-barrel" class="selection-btn shape-btn" data-shape="barrel">
+                            <span class="icon">🍙</span>
+                            <span class="label">俵型</span>
+                        </button>
+                        <button data-testid="shape-round" class="selection-btn shape-btn" data-shape="round">
+                            <span class="icon">⭕</span>
+                            <span class="label">丸型</span>
+                        </button>
+                        <button data-testid="shape-square" class="selection-btn shape-btn" data-shape="square">
+                            <span class="icon">🔲</span>
+                            <span class="label">四角</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- のり選択 -->
+                <div class="category-section">
+                    <h2 class="category-title">のりを選ぶ</h2>
+                    <div class="button-group">
+                        <button data-testid="nori-full" class="selection-btn nori-btn" data-nori="full">
+                            <span class="icon">⬛</span>
+                            <span class="label">全巻き</span>
+                        </button>
+                        <button data-testid="nori-half" class="selection-btn nori-btn" data-nori="half">
+                            <span class="icon">⬜</span>
+                            <span class="label">半巻き</span>
+                        </button>
+                        <button data-testid="nori-hand-roll" class="selection-btn nori-btn" data-nori="hand-roll">
+                            <span class="icon">📜</span>
+                            <span class="label">手巻き風</span>
+                        </button>
+                        <button data-testid="nori-none" class="selection-btn nori-btn" data-nori="none">
+                            <span class="icon">🤍</span>
+                            <span class="label">のりなし</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- プレビューエリア -->
+            <div class="preview-section">
+                <h2 class="preview-title">プレビュー</h2>
+                <div data-testid="preview-area" class="preview-area">
+                    <div class="onigiri-preview">
+                        <div class="ingredient-display">?</div>
+                        <div class="shape-display">?</div>
+                        <div class="nori-display">?</div>
+                    </div>
+                    <div class="selection-status">
+                        <div class="status-item">
+                            <span class="status-label">具材:</span>
+                            <span id="selected-ingredient" class="status-value">未選択</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-label">形:</span>
+                            <span id="selected-shape" class="status-value">未選択</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-label">のり:</span>
+                            <span id="selected-nori" class="status-value">未選択</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- アクションボタン -->
+            <div class="action-section">
+                <button data-testid="make-button" class="action-btn make-btn" disabled>
+                    🍙 おにぎりを作る
+                </button>
+                <button data-testid="reset-button" class="action-btn reset-btn">
+                    🔄 リセット
+                </button>
+            </div>
+
+            <!-- 結果表示エリア -->
+            <div data-testid="result-area" class="result-area" style="display: none;">
+                <div class="result-content">
+                    <h2 class="result-title">完成！</h2>
+                    <div class="final-onigiri">
+                        <div class="onigiri-display">🍙</div>
+                    </div>
+                    <div class="evaluation">
+                        <div class="score-section">
+                            <span class="score-label">点数:</span>
+                            <span data-testid="score-display" class="score-value">0</span>点
+                        </div>
+                        <div class="rank-section">
+                            <span class="rank-label">ランク:</span>
+                            <span data-testid="rank-display" class="rank-value">-</span>
+                        </div>
+                        <div data-testid="comment-display" class="comment-section">
+                            コメントが表示されます
+                        </div>
+                    </div>
+                    <button data-testid="retry-button" class="action-btn retry-btn">
+                        ✨ もう一度作る
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
