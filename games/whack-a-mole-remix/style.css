@@ -1,0 +1,379 @@
+/* リセットとベース設定 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #87CEEB 0%, #98FB98 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+.game-container {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+}
+
+/* ヘッダー */
+.game-header {
+    margin-bottom: 30px;
+}
+
+.game-title {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.game-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.score-display {
+    color: #e74c3c;
+}
+
+.timer-display {
+    color: #3498db;
+}
+
+.timer-display.warning {
+    color: #e74c3c;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* メインゲームエリア */
+.game-main {
+    margin-bottom: 30px;
+}
+
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 15px;
+    max-width: 450px;
+    margin: 0 auto;
+    aspect-ratio: 1;
+}
+
+.hole {
+    background: #8B4513;
+    border-radius: 50%;
+    position: relative;
+    border: 4px solid #654321;
+    cursor: pointer;
+    transition: transform 0.1s ease;
+    overflow: hidden;
+    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.hole:hover {
+    transform: scale(1.05);
+}
+
+.hole:active {
+    transform: scale(0.95);
+}
+
+.character {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    height: 70%;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    z-index: 10;
+    border: 3px solid #333;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.character.enemy {
+    background: radial-gradient(circle, #8B4513 0%, #654321 100%);
+    position: relative;
+}
+
+.character.enemy::before {
+    content: '😈';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+}
+
+.character.ally {
+    background: radial-gradient(circle, #FFF 0%, #F0F0F0 100%);
+    position: relative;
+}
+
+.character.ally::before {
+    content: '🐰';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+}
+
+.character.appearing {
+    animation: appear 0.3s ease-out;
+}
+
+.character.disappearing {
+    animation: disappear 0.2s ease-in;
+}
+
+.character.hit {
+    animation: hit 0.3s ease-out;
+}
+
+@keyframes appear {
+    0% {
+        transform: translateX(-50%) translateY(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes disappear {
+    0% {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-50%) translateY(100%);
+        opacity: 0;
+    }
+}
+
+@keyframes hit {
+    0% {
+        transform: translateX(-50%) scale(1);
+    }
+    50% {
+        transform: translateX(-50%) scale(1.2);
+    }
+    100% {
+        transform: translateX(-50%) scale(0);
+        opacity: 0;
+    }
+}
+
+/* コントロール */
+.game-controls {
+    margin-bottom: 20px;
+}
+
+.control-button {
+    background: linear-gradient(45deg, #3498db, #2980b9);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+}
+
+.control-button:hover:not(:disabled) {
+    background: linear-gradient(45deg, #2980b9, #1abc9c);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+}
+
+.control-button:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.control-button:disabled {
+    background: #95a5a6;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.retry-button {
+    background: linear-gradient(45deg, #e74c3c, #c0392b);
+    box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+}
+
+.retry-button:hover {
+    background: linear-gradient(45deg, #c0392b, #e67e22);
+    box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+}
+
+/* ゲーム終了画面 */
+.game-over-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.game-over-content {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
+    width: 90%;
+}
+
+.game-over-content h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+.final-score {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #e74c3c;
+    margin-bottom: 20px;
+}
+
+.game-stats {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.game-stats div {
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+/* スコア表示アニメーション */
+.score-change {
+    animation: scoreChange 0.5s ease-out;
+}
+
+@keyframes scoreChange {
+    0% {
+        transform: scale(1);
+        color: inherit;
+    }
+    50% {
+        transform: scale(1.2);
+        color: #e74c3c;
+    }
+    100% {
+        transform: scale(1);
+        color: inherit;
+    }
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .game-container {
+        padding: 20px;
+        margin: 10px;
+    }
+    
+    .game-title {
+        font-size: 1.5rem;
+    }
+    
+    .game-info {
+        flex-direction: column;
+        gap: 10px;
+        font-size: 1rem;
+    }
+    
+    .game-grid {
+        max-width: 350px;
+        gap: 10px;
+    }
+    
+    .character::before {
+        font-size: 1.5rem;
+    }
+    
+    .control-button {
+        padding: 12px 24px;
+        font-size: 1rem;
+    }
+    
+    .game-over-content {
+        padding: 30px 20px;
+    }
+    
+    .game-over-content h2 {
+        font-size: 1.5rem;
+    }
+    
+    .final-score {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    
+    .game-container {
+        padding: 15px;
+    }
+    
+    .game-title {
+        font-size: 1.3rem;
+    }
+    
+    .game-grid {
+        max-width: 280px;
+        gap: 8px;
+    }
+    
+    .character::before {
+        font-size: 1.2rem;
+    }
+    
+    .game-info {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+}
