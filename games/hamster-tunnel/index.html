@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ハムスタートンネル</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <header class="game-header">
+            <h1 data-testid="title">ハムスタートンネル</h1>
+            <div class="game-info">
+                <div class="info-item">
+                    <span>レベル: </span>
+                    <span data-testid="level-display" id="level-display">1</span>
+                </div>
+                <div class="info-item">
+                    <span>スコア: </span>
+                    <span data-testid="score-display" id="score-display">0</span>
+                </div>
+                <div class="info-item">
+                    <span>時間: </span>
+                    <span data-testid="timer-display" id="timer-display">30</span>
+                </div>
+            </div>
+        </header>
+
+        <main class="game-main">
+            <div class="status-area">
+                <div data-testid="status-message" id="status-message">スタートボタンを押してください</div>
+            </div>
+
+            <div class="game-field-container">
+                <div data-testid="game-field" id="game-field" class="game-field">
+                    <!-- グリッドはJavaScriptで生成 -->
+                </div>
+            </div>
+
+            <div class="controls">
+                <button data-testid="start-button" id="start-button" class="btn btn-primary">スタート</button>
+                <button data-testid="retry-button" id="retry-button" class="btn btn-secondary" style="display: none;">リトライ</button>
+                <button data-testid="move-button" id="move-button" class="btn btn-success" style="display: none;">ハムスター移動開始</button>
+            </div>
+        </main>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
