@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ネコ撫で放題</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <!-- ヘッダー -->
+        <header class="game-header">
+            <h1 data-testid="title" class="game-title">🐱 ネコ撫で放題 🐱</h1>
+            <div class="stats-bar">
+                <div class="stat">
+                    <span class="stat-label">スコア:</span>
+                    <span data-testid="score-display" class="stat-value" id="score-display">0</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">時間:</span>
+                    <span data-testid="time-display" class="stat-value" id="time-display">60</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">連続:</span>
+                    <span data-testid="combo-display" class="stat-value" id="combo-display">0</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- ステータスメッセージ -->
+        <div data-testid="status-message" class="status-message" id="status-message">準備中</div>
+
+        <!-- ゲームエリア -->
+        <div data-testid="game-area" class="game-area" id="game-area">
+            <!-- ネコは動的に生成される -->
+        </div>
+
+        <!-- コントロールボタン -->
+        <div class="controls">
+            <button data-testid="start-button" class="btn start-btn" id="start-button">スタート</button>
+            <button data-testid="retry-button" class="btn retry-btn hidden" id="retry-button">もう一度</button>
+        </div>
+
+        <!-- ゲーム終了時のスコア表示 -->
+        <div data-testid="final-score" class="final-score hidden" id="final-score">
+            <h2>ゲーム終了！</h2>
+            <p>最終スコア: <span id="final-score-value">0</span></p>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
