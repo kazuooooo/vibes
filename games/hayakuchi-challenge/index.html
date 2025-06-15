@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>早口言葉チャレンジ - Tongue Twister Challenge</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <header class="game-header">
+            <h1 data-testid="title">早口言葉チャレンジ</h1>
+            <div class="game-info">
+                <div class="info-item">
+                    <span>レベル: </span>
+                    <span data-testid="level-display" id="level-display">1</span>
+                </div>
+                <div class="info-item">
+                    <span>スコア: </span>
+                    <span data-testid="score-display" id="score-display">0</span>
+                </div>
+                <div class="info-item">
+                    <span>時間: </span>
+                    <span data-testid="time-display" id="time-display">5</span>
+                </div>
+            </div>
+        </header>
+
+        <main class="game-main">
+            <div class="status-section">
+                <div data-testid="status-message" id="status-message" class="status-message">
+                    準備完了
+                </div>
+            </div>
+
+            <div class="tongue-twister-section">
+                <div data-testid="tongue-twister-display" id="tongue-twister-display" class="tongue-twister-display">
+                    <!-- 早口言葉がここに表示される -->
+                </div>
+            </div>
+
+            <div class="controls-section">
+                <button data-testid="start-button" id="start-button" class="start-button">
+                    スタート
+                </button>
+                <button data-testid="retry-button" id="retry-button" class="retry-button" style="display: none;">
+                    リトライ
+                </button>
+            </div>
+
+            <div class="voice-section">
+                <button data-testid="mic-button" id="mic-button" class="mic-button" disabled>
+                    <div class="mic-icon">🎤</div>
+                    <span class="mic-label">マイク</span>
+                </button>
+                
+                <div data-testid="wave-effect" id="wave-effect" class="wave-effect" style="display: none;">
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                </div>
+            </div>
+
+            <div class="recognition-section">
+                <div data-testid="recognition-result" id="recognition-result" class="recognition-result">
+                    <!-- 音声認識結果がここに表示される -->
+                </div>
+            </div>
+
+            <div class="fallback-section" style="display: none;">
+                <p class="fallback-message">音声認識が利用できません。テキストで入力してください：</p>
+                <input data-testid="fallback-input" id="fallback-input" class="fallback-input" type="text" placeholder="早口言葉を入力してください">
+                <button id="fallback-submit" class="fallback-submit">判定</button>
+            </div>
+        </main>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
