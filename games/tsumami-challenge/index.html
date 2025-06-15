@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>つまみ食いチャレンジ – 親にバレないように食べる</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <header class="game-header">
+            <h1 data-testid="title" class="game-title">つまみ食いチャレンジ</h1>
+            <div class="game-stats">
+                <div class="stat">
+                    <span class="stat-label">レベル:</span>
+                    <span data-testid="level-display" class="stat-value">1</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">スコア:</span>
+                    <span data-testid="score-display" class="stat-value">0</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">時間:</span>
+                    <span data-testid="timer-display" class="stat-value">30</span>
+                </div>
+            </div>
+        </header>
+
+        <main class="game-main">
+            <div class="parent-section">
+                <div data-testid="parent-character" class="parent-character" data-state="safe">
+                    <div class="parent-body">👤</div>
+                    <div class="parent-eyes">👀</div>
+                </div>
+                <div data-testid="status-message" class="status-message">ゲーム開始前</div>
+            </div>
+
+            <div data-testid="snack-area" class="snack-area">
+                <div data-testid="current-snack" class="snack hidden" data-snack-type="cookie">
+                    🍪
+                </div>
+            </div>
+
+            <div class="game-controls">
+                <button data-testid="start-button" class="start-button">スタート</button>
+                <button data-testid="retry-button" class="retry-button hidden">リトライ</button>
+            </div>
+        </main>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
