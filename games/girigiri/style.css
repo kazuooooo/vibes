@@ -1,0 +1,225 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+}
+
+.container {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    min-width: 320px;
+    max-width: 600px;
+    width: 90%;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    color: #5a67d8;
+    margin-bottom: 2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.game-area {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.gauge-container {
+    position: relative;
+    margin: 2rem 0;
+}
+
+.gauge-background {
+    position: relative;
+    height: 60px;
+    background: #e2e8f0;
+    border-radius: 30px;
+    border: 3px solid #cbd5e0;
+    overflow: hidden;
+}
+
+.gauge-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #48bb78 0%, #ed8936 70%, #e53e3e 100%);
+    border-radius: 27px;
+    width: 0%;
+    transition: none;
+    position: relative;
+}
+
+.gauge-fill::after {
+    content: '';
+    position: absolute;
+    right: -5px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 40px;
+    background: #2d3748;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.gauge-marker {
+    position: absolute;
+    top: -30px;
+    transform: translateX(-50%);
+    font-size: 0.8rem;
+    color: #4a5568;
+    font-weight: bold;
+}
+
+.gauge-marker.danger {
+    color: #e53e3e;
+}
+
+.gauge-display {
+    margin-top: 1rem;
+    font-size: 3rem;
+    font-weight: bold;
+    color: #2d3748;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.game-controls {
+    margin: 1rem 0;
+}
+
+.stop-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 1rem 3rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+    transition: all 0.3s ease;
+    min-width: 150px;
+}
+
+.stop-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px rgba(102, 126, 234, 0.4);
+}
+
+.stop-btn:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.stop-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.score-area {
+    margin-top: 2rem;
+}
+
+.score-display {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 15px;
+    background: #f7fafc;
+    border: 2px solid #e2e8f0;
+}
+
+.score-display.success {
+    background: #c6f6d5;
+    border-color: #68d391;
+    color: #22543d;
+}
+
+.score-display.good {
+    background: #bee3f8;
+    border-color: #63b3ed;
+    color: #2c5282;
+}
+
+.score-display.ok {
+    background: #fef5e7;
+    border-color: #f6ad55;
+    color: #c05621;
+}
+
+.score-display.poor {
+    background: #fed7d7;
+    border-color: #fc8181;
+    color: #c53030;
+}
+
+.score-display.burst {
+    background: #fed7d7;
+    border-color: #e53e3e;
+    color: #c53030;
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+.retry-btn {
+    background: #4a5568;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 0.8rem 2rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.retry-btn:hover {
+    background: #2d3748;
+    transform: translateY(-1px);
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .gauge-background {
+        height: 50px;
+    }
+    
+    .gauge-display {
+        font-size: 2.5rem;
+    }
+    
+    .stop-btn {
+        padding: 0.8rem 2rem;
+        font-size: 1.2rem;
+    }
+    
+    .score-display {
+        font-size: 2rem;
+    }
+}
