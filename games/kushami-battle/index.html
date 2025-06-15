@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>くしゃみバトル</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 data-testid="title">くしゃみバトル</h1>
+            <div data-testid="distance-display" id="distance-display" class="distance-display">
+                距離: <span id="distance-value">100</span>m
+            </div>
+        </header>
+        
+        <main class="game-area">
+            <div class="battle-field">
+                <div data-testid="player-character" class="character player">
+                    <div class="character-body">😤</div>
+                    <div class="character-name">あなた</div>
+                </div>
+                
+                <div data-testid="enemy-character" class="character enemy" id="enemy-character">
+                    <div class="character-body">😱</div>
+                    <div class="character-name">相手</div>
+                </div>
+                
+                <div class="wind-effect" id="wind-effect"></div>
+            </div>
+            
+            <div class="charge-section">
+                <div class="charge-gauge-container">
+                    <div class="charge-gauge-background">
+                        <div data-testid="charge-gauge" class="charge-gauge-fill" id="charge-gauge"></div>
+                        <div class="charge-markers">
+                            <div class="marker weak" style="left: 16.67%;">弱</div>
+                            <div class="marker normal" style="left: 50%;">普通</div>
+                            <div class="marker strong" style="left: 83.33%;">強</div>
+                            <div class="marker max" style="left: 100%;">最強</div>
+                        </div>
+                    </div>
+                    <div class="charge-label">チャージゲージ</div>
+                </div>
+                
+                <button data-testid="charge-button" id="charge-button" class="charge-btn">
+                    くしゃみチャージ
+                    <span class="btn-instruction">長押しでチャージ！</span>
+                </button>
+            </div>
+            
+            <div class="info-section">
+                <div data-testid="power-display" id="power-display" class="power-display">
+                    威力: <span id="power-value">0</span>
+                </div>
+                
+                <div data-testid="result-message" id="result-message" class="result-message" style="display: none;"></div>
+                
+                <button data-testid="retry-button" id="retry-button" class="retry-btn" style="display: none;">
+                    もう一度挑戦
+                </button>
+            </div>
+        </main>
+    </div>
+    
+    <script src="game.js"></script>
+</body>
+</html>
