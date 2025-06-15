@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>方向記憶 - Direction Memory</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <header class="game-header">
+            <h1 data-testid="title">方向記憶</h1>
+            <div class="game-info">
+                <div class="info-item">
+                    <span>レベル: </span>
+                    <span data-testid="level-display" id="level-display">1</span>
+                </div>
+                <div class="info-item">
+                    <span>スコア: </span>
+                    <span data-testid="score-display" id="score-display">0</span>
+                </div>
+            </div>
+        </header>
+
+        <main class="game-main">
+            <div class="status-section">
+                <div data-testid="status-message" id="status-message" class="status-message">
+                    スタートボタンを押してゲームを開始してください
+                </div>
+            </div>
+
+            <div class="arrow-section">
+                <div data-testid="arrow-display" id="arrow-display" class="arrow-display" data-sequence="">
+                    <!-- 矢印がここに表示される -->
+                </div>
+            </div>
+
+            <div class="controls-section">
+                <button data-testid="start-button" id="start-button" class="start-button">
+                    スタート
+                </button>
+                <button data-testid="retry-button" id="retry-button" class="retry-button" style="display: none;">
+                    リトライ
+                </button>
+            </div>
+
+            <div class="direction-buttons">
+                <div class="direction-row">
+                    <button data-testid="direction-up" id="direction-up" class="direction-btn" data-direction="up" disabled>
+                        <span class="arrow">↑</span>
+                        <span class="label">上</span>
+                    </button>
+                </div>
+                <div class="direction-row">
+                    <button data-testid="direction-left" id="direction-left" class="direction-btn" data-direction="left" disabled>
+                        <span class="arrow">←</span>
+                        <span class="label">左</span>
+                    </button>
+                    <button data-testid="direction-right" id="direction-right" class="direction-btn" data-direction="right" disabled>
+                        <span class="arrow">→</span>
+                        <span class="label">右</span>
+                    </button>
+                </div>
+                <div class="direction-row">
+                    <button data-testid="direction-down" id="direction-down" class="direction-btn" data-direction="down" disabled>
+                        <span class="arrow">↓</span>
+                        <span class="label">下</span>
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
