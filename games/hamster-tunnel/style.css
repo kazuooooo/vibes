@@ -1,0 +1,306 @@
+/* リセットCSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', 'Hiragino Sans', 'ヒラギノ角ゴシック', 'Yu Gothic', 'メイリオ', sans-serif;
+    background: linear-gradient(135deg, #ffeaa7, #fab1a0);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.game-container {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    max-width: 600px;
+    width: 100%;
+}
+
+/* ヘッダー */
+.game-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.game-header h1 {
+    color: #d63031;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.game-info {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.info-item {
+    background: #f8f9fa;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 2px solid #e9ecef;
+    font-weight: bold;
+}
+
+.info-item span:first-child {
+    color: #6c757d;
+}
+
+.info-item span:last-child {
+    color: #d63031;
+    font-size: 1.2rem;
+}
+
+/* メインエリア */
+.game-main {
+    text-align: center;
+}
+
+.status-area {
+    margin-bottom: 20px;
+}
+
+#status-message {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #2d3436;
+    background: #ddd6fe;
+    padding: 15px;
+    border-radius: 10px;
+    border: 2px solid #a855f7;
+}
+
+/* ゲームフィールド */
+.game-field-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.game-field {
+    display: grid;
+    gap: 2px;
+    background: #2d3436;
+    padding: 10px;
+    border-radius: 10px;
+    border: 3px solid #636e72;
+}
+
+.grid-cell {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #636e72;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+/* セルの状態 */
+.grid-cell[data-state="soil"] {
+    background: #8b4513;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.grid-cell[data-state="tunnel"] {
+    background: #f1f2f6;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.grid-cell[data-state="start"] {
+    background: #00b894;
+    color: white;
+    font-weight: bold;
+}
+
+.grid-cell[data-state="goal"] {
+    background: #e17055;
+    color: white;
+    font-weight: bold;
+}
+
+.grid-cell[data-state="soil"]:hover {
+    background: #a0522d;
+    transform: scale(0.95);
+}
+
+.grid-cell.disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* ハムスター */
+.hamster {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: #fdcb6e;
+    border-radius: 50%;
+    border: 3px solid #e17055;
+    z-index: 10;
+    transition: all 0.5s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    animation: bounce 1s infinite alternate;
+}
+
+.hamster::before {
+    content: '🐹';
+    font-size: 1.5rem;
+}
+
+@keyframes bounce {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-5px); }
+}
+
+/* ボタン */
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 150px;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn-primary {
+    background: #00b894;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #00a085;
+}
+
+.btn-secondary {
+    background: #636e72;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #2d3436;
+}
+
+.btn-success {
+    background: #00cec9;
+    color: white;
+}
+
+.btn-success:hover {
+    background: #00b3b3;
+}
+
+.btn:disabled {
+    background: #b2bec3;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* モバイル対応 */
+@media (max-width: 768px) {
+    .game-container {
+        padding: 20px;
+        margin: 10px;
+    }
+
+    .game-header h1 {
+        font-size: 2rem;
+    }
+
+    .game-info {
+        gap: 15px;
+    }
+
+    .info-item {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+
+    .grid-cell {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+
+    .hamster {
+        width: 30px;
+        height: 30px;
+    }
+
+    .hamster::before {
+        font-size: 1.2rem;
+    }
+
+    .btn {
+        padding: 12px 20px;
+        font-size: 1rem;
+        min-width: 120px;
+    }
+
+    #status-message {
+        font-size: 1.1rem;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .grid-cell {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+
+    .hamster {
+        width: 25px;
+        height: 25px;
+    }
+
+    .hamster::before {
+        font-size: 1rem;
+    }
+
+    .controls {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn {
+        width: 100%;
+        max-width: 200px;
+    }
+}
