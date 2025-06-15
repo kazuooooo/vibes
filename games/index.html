@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ゲーム一覧 - Game List</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .game-card {
+            background-color: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+            display: block;
+        }
+        .game-card:hover {
+            background-color: #e3f2fd;
+            border-color: #2196f3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .game-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
+        .game-id {
+            font-size: 14px;
+            color: #666;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎮 ゲーム一覧 / Game List 🎮</h1>
+        <div class="games-grid">
+            <a href="direction-memory/" class="game-card">
+                <div class="game-title">方向記憶</div>
+                <div class="game-id">direction-memory</div>
+            </a>
+            <a href="girigiri/" class="game-card">
+                <div class="game-title">ギリギリチャレンジ</div>
+                <div class="game-id">girigiri</div>
+            </a>
+            <a href="hamster-tunnel/" class="game-card">
+                <div class="game-title">ハムスタートンネル</div>
+                <div class="game-id">hamster-tunnel</div>
+            </a>
+            <a href="hayakuchi-challenge/" class="game-card">
+                <div class="game-title">早口チャレンジ</div>
+                <div class="game-id">hayakuchi-challenge</div>
+            </a>
+            <a href="hengao-maker/" class="game-card">
+                <div class="game-title">変顔メーカー</div>
+                <div class="game-id">hengao-maker</div>
+            </a>
+            <a href="kaiten-jump/" class="game-card">
+                <div class="game-title">回転ジャンプ</div>
+                <div class="game-id">kaiten-jump</div>
+            </a>
+            <a href="kushami-battle/" class="game-card">
+                <div class="game-title">くしゃみバトル</div>
+                <div class="game-id">kushami-battle</div>
+            </a>
+            <a href="neko-nade-houdai/" class="game-card">
+                <div class="game-title">ネコ撫で放題</div>
+                <div class="game-id">neko-nade-houdai</div>
+            </a>
+            <a href="onigiri-maker/" class="game-card">
+                <div class="game-title">おにぎりメーカー</div>
+                <div class="game-id">onigiri-maker</div>
+            </a>
+            <a href="slow-life-swordsman/" class="game-card">
+                <div class="game-title">スローライフ剣士</div>
+                <div class="game-id">slow-life-swordsman</div>
+            </a>
+            <a href="tsumami-challenge/" class="game-card">
+                <div class="game-title">つまみチャレンジ</div>
+                <div class="game-id">tsumami-challenge</div>
+            </a>
+            <a href="whack-a-mole-remix/" class="game-card">
+                <div class="game-title">モグラ叩きリミックス</div>
+                <div class="game-id">whack-a-mole-remix</div>
+            </a>
+            <a href="zubon-age-master/" class="game-card">
+                <div class="game-title">ズボン上げマスター</div>
+                <div class="game-id">zubon-age-master</div>
+            </a>
+            <a href="zura-tobashi/" class="game-card">
+                <div class="game-title">ズラ飛ばし</div>
+                <div class="game-id">zura-tobashi</div>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
