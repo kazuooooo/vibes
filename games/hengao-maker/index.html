@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>変顔メーカー</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 data-testid="title">変顔メーカー</h1>
+            <p class="subtitle">パーツをドラッグして変顔を作ろう！</p>
+        </header>
+        
+        <main class="game-area">
+            <div class="face-container">
+                <div data-testid="face-base" class="face-base">
+                    <!-- 顔のパーツ -->
+                    <div data-testid="left-eyebrow" class="face-part eyebrow left-eyebrow" style="left: 80px; top: 60px;">
+                        <div class="eyebrow-shape"></div>
+                    </div>
+                    <div data-testid="right-eyebrow" class="face-part eyebrow right-eyebrow" style="left: 170px; top: 60px;">
+                        <div class="eyebrow-shape"></div>
+                    </div>
+                    <div data-testid="left-eye" class="face-part eye left-eye" style="left: 80px; top: 90px;">
+                        <div class="eye-shape">
+                            <div class="pupil"></div>
+                        </div>
+                    </div>
+                    <div data-testid="right-eye" class="face-part eye right-eye" style="left: 170px; top: 90px;">
+                        <div class="eye-shape">
+                            <div class="pupil"></div>
+                        </div>
+                    </div>
+                    <div data-testid="nose" class="face-part nose" style="left: 125px; top: 130px;">
+                        <div class="nose-shape"></div>
+                    </div>
+                    <div data-testid="mouth" class="face-part mouth" style="left: 125px; top: 170px;">
+                        <div class="mouth-shape"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="game-controls">
+                <button data-testid="complete-button" id="complete-button" class="btn complete-btn">完成！</button>
+                <button data-testid="reset-button" id="reset-button" class="btn reset-btn">リセット</button>
+            </div>
+        </main>
+        
+        <div class="result-area" id="result-area" style="display: none;">
+            <h2>素晴らしい変顔ができました！</h2>
+            <p>あなたの作品をお楽しみください</p>
+            <button data-testid="new-face-button" id="new-face-button" class="btn new-face-btn">新しく作る</button>
+        </div>
+    </div>
+    
+    <script src="game.js"></script>
+</body>
+</html>
