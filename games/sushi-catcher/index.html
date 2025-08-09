@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>回転寿司キャッチャー</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <header>
+            <h1 data-testid="title">回転寿司キャッチャー</h1>
+            <div class="info-bar">
+                <div class="info-item">
+                    <span>時間: </span>
+                    <span data-testid="timer-display" id="timer">60</span>
+                </div>
+                <div class="info-item">
+                    <span>スコア: </span>
+                    <span data-testid="score-display" id="score">0</span>
+                </div>
+                <div class="info-item">
+                    <span>コンボ: </span>
+                    <span data-testid="combo-display" id="combo">0</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="order-section">
+            <div data-testid="order-display" id="order" class="order-display">
+                注文をお待ちください...
+            </div>
+        </div>
+
+        <div data-testid="lane-area" id="lane" class="lane-area">
+            <div class="conveyor-belt"></div>
+            <div id="sushi-container" class="sushi-container"></div>
+        </div>
+
+        <div class="controls">
+            <button data-testid="start-button" id="start-btn" class="btn primary">スタート</button>
+            <button data-testid="retry-button" id="retry-btn" class="btn secondary" style="display: none;">リトライ</button>
+        </div>
+
+        <div class="game-info">
+            <div data-testid="game-status" id="game-status" data-status="ready" style="display: none;"></div>
+            <div data-testid="final-score" id="final-score" class="final-score" style="display: none;"></div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
