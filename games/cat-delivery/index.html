@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ネコの宅配便</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <header>
+            <h1 data-testid="title">ネコの宅配便</h1>
+            <div class="stats">
+                <div data-testid="timer-display" class="stat">時間: <span id="timer">120</span></div>
+                <div data-testid="score-display" class="stat">スコア: <span id="score">0</span></div>
+                <div data-testid="health-display" class="stat">体力: <span id="health">3</span></div>
+                <div data-testid="packages-display" class="stat">配達: <span id="packages">0</span></div>
+            </div>
+        </header>
+
+        <main>
+            <div data-testid="game-status" data-status="ready" id="game-status"></div>
+            
+            <div data-testid="road-area" id="road-area">
+                <div class="road-bg"></div>
+                <div data-testid="cat-player" id="cat-player">🚴‍♂️</div>
+            </div>
+
+            <div class="controls">
+                <button data-testid="start-button" id="start-btn">スタート</button>
+                <button data-testid="retry-button" id="retry-btn" style="display: none;">リトライ</button>
+                
+                <div class="mobile-controls">
+                    <button data-testid="left-button" id="left-btn">←</button>
+                    <button data-testid="right-button" id="right-btn">→</button>
+                </div>
+            </div>
+
+            <div data-testid="final-score" id="final-score" class="final-score" style="display: none;">
+                <div class="final-score-content">
+                    <h2>ゲーム終了！</h2>
+                    <p>最終スコア: <span id="final-score-value">0</span></p>
+                    <p>配達完了: <span id="final-packages-value">0</span>個</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
