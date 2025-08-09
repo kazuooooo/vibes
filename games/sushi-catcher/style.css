@@ -1,0 +1,341 @@
+/* 基本スタイル */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#game-container {
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    max-width: 800px;
+    width: 100%;
+    margin: 20px;
+}
+
+/* ヘッダー */
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    color: #333;
+    font-size: 2.5em;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.info-bar {
+    display: flex;
+    justify-content: space-around;
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.info-item {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+}
+
+.info-item span:first-child {
+    color: #666;
+}
+
+.info-item span:last-child {
+    color: #007bff;
+}
+
+/* 注文セクション */
+.order-section {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.order-display {
+    background: #fff3cd;
+    border: 2px solid #ffc107;
+    border-radius: 10px;
+    padding: 15px 20px;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #856404;
+    display: inline-block;
+    min-width: 200px;
+}
+
+/* レーン（コンベアベルト）エリア */
+.lane-area {
+    position: relative;
+    height: 150px;
+    background: #8B4513;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    border: 3px solid #654321;
+}
+
+.conveyor-belt {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        repeating-linear-gradient(
+            90deg,
+            #A0522D 0px,
+            #A0522D 20px,
+            #8B4513 20px,
+            #8B4513 40px
+        );
+    animation: conveyor-move 3s linear infinite;
+}
+
+@keyframes conveyor-move {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-40px); }
+}
+
+.sushi-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+/* 寿司皿のスタイル */
+.sushi-plate {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    transition: transform 0.1s, box-shadow 0.1s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8em;
+    font-weight: bold;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    border: 3px solid #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.sushi-plate:hover {
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.sushi-plate.caught {
+    animation: catch-animation 0.5s ease-out;
+}
+
+@keyframes catch-animation {
+    0% {
+        transform: translateY(-50%) scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(-80px) scale(1.2);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-120px) scale(0.5);
+        opacity: 0;
+    }
+}
+
+/* 寿司の種類別色 */
+.sushi-maguro {
+    background: linear-gradient(45deg, #DC143C, #B22222);
+}
+
+.sushi-salmon {
+    background: linear-gradient(45deg, #FF6347, #FF4500);
+}
+
+.sushi-ebi {
+    background: linear-gradient(45deg, #FF69B4, #FF1493);
+}
+
+.sushi-tamago {
+    background: linear-gradient(45deg, #FFD700, #FFA500);
+}
+
+.sushi-ikura {
+    background: linear-gradient(45deg, #2F2F2F, #000000);
+}
+
+.sushi-uni {
+    background: linear-gradient(45deg, #9370DB, #8A2BE2);
+}
+
+/* コントロール */
+.controls {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.btn {
+    font-size: 1.2em;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 0 10px;
+    transition: all 0.3s;
+    font-weight: bold;
+}
+
+.btn.primary {
+    background: linear-gradient(45deg, #007bff, #0056b3);
+    color: white;
+}
+
+.btn.primary:hover:not(:disabled) {
+    background: linear-gradient(45deg, #0056b3, #003d82);
+    transform: translateY(-2px);
+}
+
+.btn.secondary {
+    background: linear-gradient(45deg, #6c757d, #545b62);
+    color: white;
+}
+
+.btn.secondary:hover {
+    background: linear-gradient(45deg, #545b62, #3d4448);
+    transform: translateY(-2px);
+}
+
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* ゲーム情報 */
+.final-score {
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #007bff;
+    background: #e3f2fd;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+/* フィードバック表示 */
+.score-popup {
+    position: absolute;
+    font-size: 1.5em;
+    font-weight: bold;
+    pointer-events: none;
+    z-index: 1000;
+    animation: score-popup 1s ease-out forwards;
+}
+
+.score-popup.positive {
+    color: #28a745;
+}
+
+.score-popup.negative {
+    color: #dc3545;
+}
+
+@keyframes score-popup {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(-30px) scale(1.2);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-60px) scale(0.8);
+        opacity: 0;
+    }
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    #game-container {
+        margin: 10px;
+        padding: 15px;
+    }
+    
+    header h1 {
+        font-size: 2em;
+    }
+    
+    .info-bar {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    
+    .order-display {
+        font-size: 1.2em;
+        padding: 10px 15px;
+    }
+    
+    .lane-area {
+        height: 120px;
+    }
+    
+    .sushi-plate {
+        width: 60px;
+        height: 60px;
+        font-size: 0.7em;
+    }
+    
+    .btn {
+        font-size: 1em;
+        padding: 12px 24px;
+        display: block;
+        width: 100%;
+        margin: 5px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.5em;
+    }
+    
+    .info-item {
+        font-size: 1em;
+    }
+    
+    .order-display {
+        font-size: 1em;
+        padding: 8px 12px;
+    }
+    
+    .lane-area {
+        height: 100px;
+    }
+    
+    .sushi-plate {
+        width: 50px;
+        height: 50px;
+        font-size: 0.6em;
+    }
+}
