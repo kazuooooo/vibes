@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>おにぎりパズル</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <!-- ヘッダー -->
+        <header class="game-header">
+            <h1>🍙 おにぎりパズル</h1>
+            <div class="game-info">
+                <div class="info-item">
+                    <span class="label">スコア:</span>
+                    <span id="score" data-testid="score">0</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">時間:</span>
+                    <span id="timer" data-testid="timer">60</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">おにぎり:</span>
+                    <span id="onigiri-count" data-testid="onigiri-count">0</span>個
+                </div>
+            </div>
+        </header>
+
+        <!-- メインゲームエリア -->
+        <main class="game-main">
+            <!-- ゲームボード -->
+            <div class="game-board-container">
+                <div id="game-grid" class="game-grid" data-testid="game-grid">
+                    <!-- 8×8のグリッドはJavaScriptで生成 -->
+                </div>
+                
+                <!-- エフェクト表示エリア -->
+                <div id="effects-container" class="effects-container">
+                    <div id="explosion-effect" class="effect explosion-effect" data-testid="explosion-effect"></div>
+                    <div id="line-effect" class="effect line-effect" data-testid="line-effect"></div>
+                    <div id="onigiri-complete-effect" class="effect onigiri-complete-effect"></div>
+                </div>
+            </div>
+
+            <!-- サイドパネル -->
+            <aside class="side-panel" data-testid="side-panel">
+                <div class="panel-section">
+                    <h3>次の特殊効果</h3>
+                    <div id="next-special" class="next-special">
+                        <div class="special-item">
+                            <span class="special-icon">🔴</span>
+                            <span class="special-name">梅干し</span>
+                            <span class="special-desc">3×3爆破</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel-section">
+                    <h3>連鎖</h3>
+                    <div id="combo-counter" class="combo-counter">
+                        <span class="combo-number">0</span>
+                        <span class="combo-text">連鎖</span>
+                    </div>
+                </div>
+                
+                <div class="panel-section">
+                    <h3>おにぎり進度</h3>
+                    <div class="onigiri-progress">
+                        <div class="ingredient-tracker">
+                            <div class="ingredient rice">
+                                <span>🍚</span>
+                                <span id="rice-count">0</span>/3
+                            </div>
+                            <div class="ingredient filling">
+                                <span>🔴</span>
+                                <span id="filling-count">0</span>/1
+                            </div>
+                            <div class="ingredient nori">
+                                <span>⚫</span>
+                                <span id="nori-count">0</span>/1
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </main>
+
+        <!-- コントロールエリア -->
+        <div class="controls">
+            <button id="pause-btn" class="btn btn-secondary">⏸️ ポーズ</button>
+            <button id="restart-btn" class="btn btn-secondary">🔄 リスタート</button>
+            <button id="help-btn" class="btn btn-secondary">❓ ヘルプ</button>
+        </div>
+
+        <!-- コンパクトUI（モバイル用） -->
+        <div class="compact-ui" data-testid="compact-ui">
+            <div class="compact-stats">
+                <span>⭐ <span id="mobile-score">0</span></span>
+                <span>⏱️ <span id="mobile-timer">60</span></span>
+                <span>🍙 <span id="mobile-onigiri">0</span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ゲーム終了画面 -->
+    <div id="game-over" class="modal game-over-modal" data-testid="game-over">
+        <div class="modal-content">
+            <h2>ゲーム終了！</h2>
+            <div class="final-stats">
+                <div class="stat-item">
+                    <span class="stat-label">最終スコア</span>
+                    <span id="final-score" class="stat-value" data-testid="final-score">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">作成したおにぎり</span>
+                    <span id="final-onigiri-count" class="stat-value">0</span>個
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">最大連鎖</span>
+                    <span id="max-combo" class="stat-value">0</span>連鎖
+                </div>
+                <div class="ranking">
+                    <span id="rank" class="rank">C</span>
+                    <span class="rank-text">ランク</span>
+                </div>
+            </div>
+            <div class="modal-buttons">
+                <button id="play-again-btn" class="btn btn-primary">🍙 もう一度プレイ</button>
+                <button id="share-btn" class="btn btn-secondary">📤 結果をシェア</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ヘルプモーダル -->
+    <div id="help-modal" class="modal help-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>遊び方</h2>
+                <button class="close-btn" data-modal="help-modal">&times;</button>
+            </div>
+            <div class="help-content">
+                <div class="help-section">
+                    <h3>基本ルール</h3>
+                    <ul>
+                        <li>同じ具材を3つ以上並べてマッチさせよう</li>
+                        <li>米3個 + 具材1個 + 海苔1個でおにぎり完成！</li>
+                        <li>制限時間は60秒</li>
+                    </ul>
+                </div>
+                <div class="help-section">
+                    <h3>具材の効果</h3>
+                    <div class="ingredients-help">
+                        <div class="ingredient-help">
+                            <span class="ingredient-icon">🔴</span>
+                            <span class="ingredient-name">梅干し</span>
+                            <span class="ingredient-effect">3×3範囲爆破</span>
+                        </div>
+                        <div class="ingredient-help">
+                            <span class="ingredient-icon">🟠</span>
+                            <span class="ingredient-name">鮭</span>
+                            <span class="ingredient-effect">1ライン消去</span>
+                        </div>
+                        <div class="ingredient-help">
+                            <span class="ingredient-icon">🟤</span>
+                            <span class="ingredient-name">昆布</span>
+                            <span class="ingredient-effect">同種全消去</span>
+                        </div>
+                        <div class="ingredient-help">
+                            <span class="ingredient-icon">🟡</span>
+                            <span class="ingredient-name">ツナマヨ</span>
+                            <span class="ingredient-effect">隣接変換</span>
+                        </div>
+                        <div class="ingredient-help">
+                            <span class="ingredient-icon">🔶</span>
+                            <span class="ingredient-name">明太子</span>
+                            <span class="ingredient-effect">得点2倍</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="help-section">
+                    <h3>操作方法</h3>
+                    <ul>
+                        <li><strong>PC:</strong> クリックで選択、ドラッグで交換</li>
+                        <li><strong>モバイル:</strong> タップで選択、スワイプで交換</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ポーズモーダル -->
+    <div id="pause-modal" class="modal pause-modal">
+        <div class="modal-content">
+            <h2>⏸️ ポーズ中</h2>
+            <div class="modal-buttons">
+                <button id="resume-btn" class="btn btn-primary">▶️ 再開</button>
+                <button id="restart-from-pause-btn" class="btn btn-secondary">🔄 リスタート</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ゲームステータス（スクリーンリーダー用） -->
+    <div aria-live="polite" class="sr-only" id="game-status">
+        ゲーム開始。制限時間60秒でおにぎりを作ろう！
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
