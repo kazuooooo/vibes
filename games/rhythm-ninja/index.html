@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>リズム忍者 - Rhythm Ninja</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <header class="game-header">
+            <h1 data-testid="title">リズム忍者</h1>
+            <div class="game-info">
+                <div class="info-item">
+                    <span>スコア: </span>
+                    <span data-testid="score-display" id="score-display">0</span>
+                </div>
+                <div class="info-item">
+                    <span>HP: </span>
+                    <div data-testid="hp-display" id="hp-display" class="hp-display">
+                        <span data-testid="heart" class="heart">❤️</span>
+                        <span data-testid="heart" class="heart">❤️</span>
+                        <span data-testid="heart" class="heart">❤️</span>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <span>BPM: </span>
+                    <span data-testid="bpm-display" id="bpm-display">80</span>
+                </div>
+                <div class="info-item">
+                    <span>コンボ: </span>
+                    <span data-testid="combo-display" id="combo-display">0</span>
+                </div>
+            </div>
+        </header>
+
+        <main class="game-main">
+            <!-- カウントダウン表示 -->
+            <div data-testid="countdown" id="countdown" class="countdown" style="display: none;">
+                <div id="countdown-number">3</div>
+            </div>
+
+            <!-- ゲームプレイエリア -->
+            <div class="game-area">
+                <!-- ビートインジケーター -->
+                <div data-testid="beat-indicator" id="beat-indicator" class="beat-indicator">
+                    <div class="beat-pulse"></div>
+                </div>
+
+                <!-- 敵キャラクター -->
+                <div class="enemy-area">
+                    <div data-testid="air-enemy" id="air-enemy" class="enemy air-enemy" style="display: none;">
+                        <span class="enemy-sprite">🦅</span>
+                    </div>
+                    <div data-testid="ground-enemy" id="ground-enemy" class="enemy ground-enemy" style="display: none;">
+                        <span class="enemy-sprite">👹</span>
+                    </div>
+                </div>
+
+                <!-- 忍者キャラクター -->
+                <div data-testid="ninja-character" id="ninja-character" class="ninja-character" data-action="idle">
+                    <span class="ninja-sprite">🥷</span>
+                </div>
+
+                <!-- アクションエフェクト -->
+                <div data-testid="action-effect" id="action-effect" class="action-effect">
+                    <span id="effect-text"></span>
+                </div>
+
+                <!-- タイミング判定結果 -->
+                <div data-testid="timing-result" id="timing-result" class="timing-result">
+                    <span id="timing-text"></span>
+                </div>
+            </div>
+
+            <!-- コントロールボタン -->
+            <div class="controls-section">
+                <button data-testid="start-button" id="start-button" class="start-button">
+                    スタート
+                </button>
+            </div>
+
+            <!-- アクションボタン -->
+            <div class="action-buttons">
+                <button data-testid="slash-button" id="slash-button" class="action-btn slash-btn" disabled>
+                    <span class="action-icon">⚔️</span>
+                    <span class="action-label">斬撃</span>
+                    <div class="key-hint">Space</div>
+                </button>
+                <button data-testid="jump-button" id="jump-button" class="action-btn jump-btn" disabled>
+                    <span class="action-icon">⬆️</span>
+                    <span class="action-label">ジャンプ</span>
+                    <div class="key-hint">↑</div>
+                </button>
+            </div>
+        </main>
+
+        <!-- ゲームオーバー画面 -->
+        <div data-testid="game-over" id="game-over" class="game-over-screen" style="display: none;">
+            <div class="game-over-content">
+                <h2>ゲームオーバー</h2>
+                <div class="final-stats">
+                    <div class="stat-item">
+                        <span>最終スコア: </span>
+                        <span data-testid="final-score" id="final-score">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>最高コンボ: </span>
+                        <span id="max-combo">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>到達BPM: </span>
+                        <span id="final-bpm">80</span>
+                    </div>
+                </div>
+                <button data-testid="retry-button" id="retry-button" class="retry-button">
+                    リトライ
+                </button>
+            </div>
+        </div>
+
+        <!-- 一般的なenemy要素（テスト用） -->
+        <div data-testid="enemy" class="enemy" style="display: none;"></div>
+    </div>
+
+    <!-- 音声要素 -->
+    <audio data-testid="audio-metronome" id="audio-metronome" preload="auto">
+        <!-- メトロノーム音は実際のゲームでは音声ファイルを使用 -->
+    </audio>
+    <audio id="audio-slash" preload="auto"></audio>
+    <audio id="audio-jump" preload="auto"></audio>
+    <audio id="audio-damage" preload="auto"></audio>
+    <audio id="audio-perfect" preload="auto"></audio>
+
+    <script src="game.js"></script>
+</body>
+</html>
