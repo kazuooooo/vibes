@@ -1,0 +1,409 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #87CEEB, #98FB98);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+}
+
+#game-container {
+    width: 90%;
+    max-width: 800px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+header {
+    background: linear-gradient(90deg, #FF6B6B, #4ECDC4);
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.stats {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.stat {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 8px 12px;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+main {
+    position: relative;
+    height: 600px;
+    overflow: hidden;
+}
+
+#road-area {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    background: #333;
+    background-image: 
+        linear-gradient(0deg, 
+            transparent 24%, 
+            rgba(255, 255, 255, 0.05) 25%, 
+            rgba(255, 255, 255, 0.05) 26%, 
+            transparent 27%, 
+            transparent 74%, 
+            rgba(255, 255, 255, 0.05) 75%, 
+            rgba(255, 255, 255, 0.05) 76%, 
+            transparent 77%, 
+            transparent),
+        linear-gradient(90deg, 
+            transparent 24%, 
+            rgba(255, 255, 255, 0.05) 25%, 
+            rgba(255, 255, 255, 0.05) 26%, 
+            transparent 27%, 
+            transparent 74%, 
+            rgba(255, 255, 255, 0.05) 75%, 
+            rgba(255, 255, 255, 0.05) 76%, 
+            transparent 77%, 
+            transparent);
+    background-size: 50px 50px;
+    border: 3px solid #222;
+    animation: roadScroll 2s linear infinite;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.road-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 100%;
+    background: repeating-linear-gradient(
+        to bottom,
+        white 0,
+        white 20px,
+        transparent 20px,
+        transparent 40px
+    );
+    animation: roadLineScroll 1s linear infinite;
+}
+
+@keyframes roadScroll {
+    from { background-position: 0 0; }
+    to { background-position: 0 50px; }
+}
+
+@keyframes roadLineScroll {
+    from { background-position: 0 0; }
+    to { background-position: 0 40px; }
+}
+
+#cat-player {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 3em;
+    z-index: 100;
+    transition: left 0.1s ease;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
+}
+
+.obstacle {
+    position: absolute;
+    z-index: 50;
+    font-size: 2em;
+    transition: top 0.1s linear;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.obstacle-car {
+    color: #FF4444;
+}
+
+.obstacle-construction {
+    color: #FF8C00;
+}
+
+.obstacle-hole {
+    color: #8B4513;
+}
+
+.obstacle-tree {
+    color: #228B22;
+}
+
+.obstacle-signal {
+    color: #FFD700;
+}
+
+.package {
+    position: absolute;
+    z-index: 60;
+    font-size: 1.5em;
+    transition: top 0.1s linear;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+    animation: packagePulse 1s ease-in-out infinite alternate;
+}
+
+@keyframes packagePulse {
+    from { transform: scale(1); }
+    to { transform: scale(1.1); }
+}
+
+.delivery-target {
+    position: absolute;
+    z-index: 60;
+    font-size: 2em;
+    transition: top 0.1s linear;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+    animation: targetGlow 1s ease-in-out infinite alternate;
+    color: #00FF00;
+}
+
+@keyframes targetGlow {
+    from { 
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    to { 
+        transform: scale(1.2);
+        opacity: 1;
+    }
+}
+
+.controls {
+    padding: 20px;
+    text-align: center;
+    background: #f8f9fa;
+}
+
+button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    margin: 5px;
+    border-radius: 25px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.mobile-controls {
+    display: none;
+    margin-top: 15px;
+}
+
+.mobile-controls button {
+    font-size: 1.5em;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin: 0 10px;
+}
+
+.final-score {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+}
+
+.final-score-content {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.final-score-content h2 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 2em;
+}
+
+.final-score-content p {
+    color: #666;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.score-popup {
+    position: absolute;
+    z-index: 150;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    pointer-events: none;
+    animation: scorePopup 1s ease-out forwards;
+}
+
+.score-popup.positive {
+    color: #00FF00;
+}
+
+.score-popup.negative {
+    color: #FF0000;
+}
+
+@keyframes scorePopup {
+    0% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1.5) translateY(-50px);
+    }
+}
+
+.collision-effect {
+    animation: collisionShake 0.5s ease-in-out;
+}
+
+@keyframes collisionShake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+.pickup-effect {
+    animation: pickupSpin 0.5s ease-in-out;
+}
+
+@keyframes pickupSpin {
+    0% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.3) rotate(180deg); }
+    100% { transform: scale(0) rotate(360deg); }
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+    #game-container {
+        width: 95%;
+        margin: 10px;
+    }
+
+    header h1 {
+        font-size: 1.5em;
+    }
+
+    .stats {
+        font-size: 0.9em;
+    }
+
+    .stat {
+        padding: 6px 10px;
+    }
+
+    main {
+        height: 500px;
+    }
+
+    #road-area {
+        height: 400px;
+    }
+
+    #cat-player {
+        font-size: 2.5em;
+        bottom: 40px;
+    }
+
+    .obstacle {
+        font-size: 1.5em;
+    }
+
+    .mobile-controls {
+        display: block;
+    }
+
+    button {
+        font-size: 1em;
+        padding: 10px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.2em;
+    }
+
+    .stats {
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+
+    main {
+        height: 450px;
+    }
+
+    #road-area {
+        height: 350px;
+    }
+
+    #cat-player {
+        font-size: 2em;
+        bottom: 30px;
+    }
+
+    .final-score-content {
+        padding: 20px;
+        margin: 20px;
+    }
+
+    .final-score-content h2 {
+        font-size: 1.5em;
+    }
+
+    .final-score-content p {
+        font-size: 1em;
+    }
+}
