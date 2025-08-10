@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爆走ショッピングカート</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🛒 爆走ショッピングカート</h1>
+            <div class="stats">
+                <div class="stat">
+                    <span class="label">スコア:</span>
+                    <span id="score">0</span>
+                </div>
+                <div class="stat">
+                    <span class="label">スピード:</span>
+                    <span id="speed">5</span>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div id="gameArea" class="game-area">
+                <div id="player" class="player">🛒</div>
+            </div>
+
+            <div class="controls">
+                <button id="startButton" class="start-button">スタート</button>
+                <button id="restartButton" class="restart-button" style="display: none;">リスタート</button>
+            </div>
+
+            <div id="gameStatus" class="game-status">待機中</div>
+        </main>
+
+        <footer>
+            <div class="instructions">
+                <p><strong>操作方法:</strong></p>
+                <p>PC: ←→キー または A/Dキー</p>
+                <p>モバイル: 画面タッチ（左半分=左移動、右半分=右移動）</p>
+            </div>
+        </footer>
+
+        <div id="gameOverModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <h2>ゲームオーバー</h2>
+                <p>最終スコア: <span id="finalScore">0</span></p>
+                <button id="modalRestartButton" class="restart-button">もう一度プレイ</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
